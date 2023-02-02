@@ -4,9 +4,15 @@
 # Manages the state of Package['metricbeat']
 #
 # @summary Manages the state of Package['metricbeat']
-class metricbeat::install inherits metricbeat {
-  if $::kernel == 'Windows' {
-    $filename       = regsubst($metricbeat::real_download_url, '^https?.*\/([^\/]+)\.[^.].*', '\1')
+class metricbeat::install (
+  String $ensure     = $metricbeat::ensure,
+) {
+  # The base class must be included first because parameter defaults depend on it
+  if ! defined(Class['metricbeat']) {
+    fail('You must include the metricbeat class before using any metricbeat defined resources')
+  }
+  if $facts['kernel'] == 'windows' {
+    $filename       = regsubst($metricbeat::download_url, '^https?.*\/([^\/]+)\.[^.].*', '\1')
     $foldername     = 'Metricbeat'
     $zip_file       = join([$metricbeat::tmp_dir, "${filename}.zip"], '/')
     $install_folder = join([$metricbeat::install_dir, $foldername], '/')
@@ -23,11 +29,11 @@ class metricbeat::install inherits metricbeat {
     }
 
     archive { $zip_file:
-      source       => $metricbeat::real_download_url,
       cleanup      => false,
       creates      => $version_file,
       proxy_server => $metricbeat::proxy_address,
     }
+
     if $facts['powershell_version'] =~ 5 {
       $unzip_command = "Expand-Archive ${zip_file} \"${metricbeat::install_dir}\""
     }
