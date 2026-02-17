@@ -158,7 +158,7 @@ class metricbeat (
   String $beat_name                                                   = $facts['networking']['hostname'],
   Boolean $disable_configtest                                         = false,
   Enum['present', 'absent'] $ensure                                   = 'present',
-  Enum['7', '8'] $major_version                                       = '7',
+  Enum['7', '8', '9'] $major_version                                  = '7',
   Boolean $manage_repo                                                = true,
   String $package_ensure                                              = 'present',
   Integer $queue_size                                                 = 1000,
