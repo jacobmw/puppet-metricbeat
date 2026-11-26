@@ -1,5 +1,18 @@
 # Enable a modules.d file either via a custom source, custom template or default module template
 # $config can be used to pass down parameters into an .erb template
+#
+# @param template_name
+# [String] The name of the template to use for the modules.d file.
+#
+# @param config
+# [Hash] The configuration for the modules.d file.
+#
+# @param source
+# [String] The source of the modules.d file.
+#
+# @param content
+# [String] The content of the modules.d file.
+#
 define metricbeat::modulesd (
   String           $template_name = $name,
   Hash             $config        = {},

@@ -16,7 +16,7 @@ class metricbeat::params {
   $fields             = undef
   $fields_under_root  = false
   $manage_repo        = true
-  $major_version      = '5'
+  $major_version      = '9'
   $modules            = [{}]
   $module_templates   = ['system']
   $outputs            = {}
@@ -31,7 +31,6 @@ class metricbeat::params {
       },
     },
   }
-  $queue_size          = 1000
   $service_ensure      = 'enabled'
   $service_has_restart = true
   $tags                = undef
@@ -86,7 +85,7 @@ class metricbeat::params {
         'to_eventlog' => false,
         'to_files'    => true,
       }
-      $package_ensure   = '6.6.1'
+      $package_ensure   = '9.5.7'
       $service_provider = undef
       $tmp_dir          = 'C:/Windows/Temp'
       $url_arch         = $facts['os']['architecture'] ? {

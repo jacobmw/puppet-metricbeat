@@ -1,2 +1,4 @@
 ---
-ignore: []
+ignore:
+- files/**/*.yml
+- files/**/*.yaml
