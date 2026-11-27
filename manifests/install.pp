@@ -79,7 +79,7 @@ class metricbeat::install inherits metricbeat {
         subscribe   => Exec["mark ${filename}"],
       }
     } else {
-    # Uninstall cleanup on Windows (e.g. removing install directory)
+      # Uninstall cleanup on Windows (e.g. removing install directory)
       file { "${metricbeat::install_dir}/Metricbeat":
         ensure => absent,
         force  => true,

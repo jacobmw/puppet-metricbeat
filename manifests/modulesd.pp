@@ -24,6 +24,8 @@ define metricbeat::modulesd (
     $default_source = "puppet:///modules/metricbeat/${template_name}.yml"
   } elsif $source {
     $default_source = $source
+  } else {
+    $default_source = undef
   }
   file { "${metricbeat::config_dir}/modules.d/${template_name}.yml":
     ensure  => file,
