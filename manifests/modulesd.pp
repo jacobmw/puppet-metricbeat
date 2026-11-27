@@ -34,7 +34,7 @@ define metricbeat::modulesd (
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    require => Class['metricbeat'],
+    require => Class['metricbeat::install'],
     notify  => Class['metricbeat::service'],
   }
 }
